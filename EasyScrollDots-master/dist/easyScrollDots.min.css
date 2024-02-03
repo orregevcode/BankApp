@@ -1,0 +1,95 @@
+:root {
+    --color-primary: #5ec576;
+    --color-secondary: #ffcb03;
+    --color-tertiary: #ff585f;
+    --color-primary-darker: #4bbb7d;
+    --color-secondary-darker: #ffbb00;
+    --color-tertiary-darker: #fd424b;
+    --color-primary-opacity: #5ec5763a;
+    --color-secondary-opacity: #ffcd0331;
+    --color-tertiary-opacity: #ff58602d;
+    --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+    --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
+  }
+
+.scroll-indicator-controller {
+    position: fixed;
+    top: 50vh;
+    transform: translate(0, -50%);
+    right: 10px;
+    z-index: 999;
+}
+
+.scroll-indicator-controller.indi-mobile > div span {
+    display: none;
+}
+
+@media (min-width: 1025px) {
+    .scroll-indicator-controller {
+        right: 20px;
+    }
+}
+
+.scroll-indicator-controller > div {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .25);
+    margin: 0 0 10px 0;
+    cursor: pointer;
+    transition: background .4s ease;
+    will-change: transition;
+}
+
+.scroll-indicator-controller > div span {
+    color: var(--color-primary);;
+    position: absolute;
+    right: calc(100% + 8px);
+    white-space: nowrap;
+    top: 50%;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    line-height: 17px;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-50%) translateX(10px);
+    transition: all .4s ease;
+    will-change: transition;
+}
+
+@media (hover: none) {
+    .scroll-indicator-controller > div span {
+        display: none;
+    }
+}
+
+.scroll-indicator-controller > div span:after {
+    content: "-----";
+    padding-left: 5px;
+    letter-spacing: -2px;
+    font-family: arial, sans-serif;
+    vertical-align: text-top;
+    line-height: 14px;
+}
+
+@media (hover: hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .scroll-indicator-controller > div:hover span {
+        width: auto;
+        opacity: 1;
+        overflow: visible;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+.scroll-indicator-controller > div.active {
+    background: #5ec576;
+    border-color: rgba(0, 0, 0, .25);
+}
+
+@supports (-ms-ime-align: auto) {
+    .scroll-indicator-controller > div span {
+        transition: opacity .4s ease;
+    }
+}
